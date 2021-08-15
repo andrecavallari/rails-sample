@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.openweathermap.org/data/2.5/weather?appid=053ff97c51fa66449b7b9597ac8345d5&lang=pt_br&q=Asdf,PR,BR&units=metric
+    uri: http://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_API_KEY>&lang=pt_br&q=Asdf,PR,BR&units=metric
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Sun, 15 Aug 2021 14:59:10 GMT
+      - Sun, 15 Aug 2021 21:17:13 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -39,5 +39,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"cod":"404","message":"city not found"}'
-  recorded_at: Sun, 15 Aug 2021 14:59:13 GMT
+  recorded_at: Sun, 15 Aug 2021 21:17:14 GMT
 recorded_with: VCR 6.0.0

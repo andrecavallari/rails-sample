@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api.openweathermap.org/data/2.5/weather?appid=053ff97c51fa66449b7b9597ac8345d5&lang=pt_br&q=Cascavel,PR,BR&units=metric
+    uri: http://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_API_KEY>&lang=pt_br&q=Cascavel,PR,BR&units=metric
     body:
       encoding: US-ASCII
       string: ''
@@ -21,11 +21,11 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Sun, 15 Aug 2021 14:52:33 GMT
+      - Sun, 15 Aug 2021 21:17:13 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '470'
+      - '477'
       Connection:
       - keep-alive
       X-Cache-Key:
@@ -37,8 +37,8 @@ http_interactions:
       Access-Control-Allow-Methods:
       - GET, POST
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJjb29yZCI6eyJsb24iOi01My40NTUzLCJsYXQiOi0yNC45NTU4fSwid2VhdGhlciI6W3siaWQiOjgwMCwibWFpbiI6IkNsZWFyIiwiZGVzY3JpcHRpb24iOiJjw6l1IGxpbXBvIiwiaWNvbiI6IjAxZCJ9XSwiYmFzZSI6InN0YXRpb25zIiwibWFpbiI6eyJ0ZW1wIjoyMS43OCwiZmVlbHNfbGlrZSI6MjEuNzksInRlbXBfbWluIjoyMS43OCwidGVtcF9tYXgiOjIxLjc4LCJwcmVzc3VyZSI6MTAxOSwiaHVtaWRpdHkiOjY4fSwidmlzaWJpbGl0eSI6MTAwMDAsIndpbmQiOnsic3BlZWQiOjQuMTIsImRlZyI6MzUwfSwiY2xvdWRzIjp7ImFsbCI6MH0sImR0IjoxNjI5MDM5MTE1LCJzeXMiOnsidHlwZSI6MSwiaWQiOjgzMjMsImNvdW50cnkiOiJCUiIsInN1bnJpc2UiOjE2MjkwMjE2NjgsInN1bnNldCI6MTYyOTA2MjEzOX0sInRpbWV6b25lIjotMTA4MDAsImlkIjozNDY2Nzc5LCJuYW1lIjoiQ2FzY2F2ZWwiLCJjb2QiOjIwMH0=
-  recorded_at: Sun, 15 Aug 2021 14:52:37 GMT
+      encoding: UTF-8
+      string: '{"coord":{"lon":-53.4553,"lat":-24.9558},"weather":[{"id":802,"main":"Clouds","description":"nuvens
+        dispersas","icon":"03n"}],"base":"stations","main":{"temp":23.78,"feels_like":23.7,"temp_min":23.78,"temp_max":23.78,"pressure":1016,"humidity":57},"visibility":10000,"wind":{"speed":2.06,"deg":200},"clouds":{"all":40},"dt":1629062151,"sys":{"type":1,"id":8323,"country":"BR","sunrise":1629021668,"sunset":1629062139},"timezone":-10800,"id":3466779,"name":"Cascavel","cod":200}'
+  recorded_at: Sun, 15 Aug 2021 21:17:13 GMT
 recorded_with: VCR 6.0.0
