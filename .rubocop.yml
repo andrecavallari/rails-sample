@@ -1,0 +1,16 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  TargetRubyVersion: 3.0.1
+  NewCops: enable
+  Exclude:
+    - db/**/*
+    - bin/*
+    - node_modules/**/*
+    - .simplecov
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+  IndentationWidth: 2
+Layout/LineLength:
+  Max: 120
