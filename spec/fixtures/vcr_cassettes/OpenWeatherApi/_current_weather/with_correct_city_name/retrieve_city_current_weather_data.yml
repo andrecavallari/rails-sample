@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.openweathermap.org/data/2.5/weather?appid=053ff97c51fa66449b7b9597ac8345d5&lang=pt_br&q=Cascavel,PR,BR&units=metric
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Sun, 15 Aug 2021 14:52:33 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '470'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?lang=pt_br&q=cascavel%2cpr%2cbr&units=metric"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJjb29yZCI6eyJsb24iOi01My40NTUzLCJsYXQiOi0yNC45NTU4fSwid2VhdGhlciI6W3siaWQiOjgwMCwibWFpbiI6IkNsZWFyIiwiZGVzY3JpcHRpb24iOiJjw6l1IGxpbXBvIiwiaWNvbiI6IjAxZCJ9XSwiYmFzZSI6InN0YXRpb25zIiwibWFpbiI6eyJ0ZW1wIjoyMS43OCwiZmVlbHNfbGlrZSI6MjEuNzksInRlbXBfbWluIjoyMS43OCwidGVtcF9tYXgiOjIxLjc4LCJwcmVzc3VyZSI6MTAxOSwiaHVtaWRpdHkiOjY4fSwidmlzaWJpbGl0eSI6MTAwMDAsIndpbmQiOnsic3BlZWQiOjQuMTIsImRlZyI6MzUwfSwiY2xvdWRzIjp7ImFsbCI6MH0sImR0IjoxNjI5MDM5MTE1LCJzeXMiOnsidHlwZSI6MSwiaWQiOjgzMjMsImNvdW50cnkiOiJCUiIsInN1bnJpc2UiOjE2MjkwMjE2NjgsInN1bnNldCI6MTYyOTA2MjEzOX0sInRpbWV6b25lIjotMTA4MDAsImlkIjozNDY2Nzc5LCJuYW1lIjoiQ2FzY2F2ZWwiLCJjb2QiOjIwMH0=
+  recorded_at: Sun, 15 Aug 2021 14:52:37 GMT
+recorded_with: VCR 6.0.0

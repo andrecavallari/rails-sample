@@ -14,3 +14,7 @@ Layout/ArgumentAlignment:
   IndentationWidth: 2
 Layout/LineLength:
   Max: 120
+Style/Documentation:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
