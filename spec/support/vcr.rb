@@ -2,6 +2,14 @@
 
 require 'vcr'
 
+SENSITIVE_ENV_VARIABLES = %w[
+  OPEN_WEATHER_API_KEY
+  TWITTER_API_KEY
+  TWITTER_API_SECRET
+  TWITTER_ACCESS_TOKEN
+  TWITTER_ACCESS_TOKEN_SECRET
+].freeze
+
 VCR.configure do |config|
   config.hook_into :webmock
   config.ignore_localhost = true
@@ -9,6 +17,7 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.default_cassette_options = { record: :none }
 
-  # To prevent sensitive data to be commited, use code below:
-  # config.filter_sensitive_data('<MASKED_DATA>') { 'REAL_VALUE' }
+  SENSITIVE_ENV_VARIABLES.each do |key|
+    config.filter_sensitive_data("<#{key}>") { ENV[key] }
+  end
 end

@@ -17,6 +17,7 @@ gem 'rails', '~> 6.1.4'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'httparty', '~> 0.18.1'
+gem 'twitter', '~> 7.0.0'
 
 group :development do
   gem 'listen', '~> 3.3'
