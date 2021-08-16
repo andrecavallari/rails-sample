@@ -1,0 +1,14 @@
+br:
+  date:
+    formats:
+      default: '%d/%m/%Y'
+      short: '%d/%m'
+  junctions:
+    in: " em "
+  weather_tweet:
+    message: 'Em %{city}: %{condition}, %{temp}°C. Média para os próximos dias: %{forecast}'
+  support:
+    array:
+      words_connector: ', '
+      two_words_connector: ' e '
+      last_word_connector: ' e '

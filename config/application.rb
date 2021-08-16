@@ -32,6 +32,7 @@ module Sample
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.i18n.default_locale = :br
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
@@ -40,5 +41,8 @@ module Sample
 
     # Autoload paths
     config.autoload_paths << Rails.root.join('app/services')
+
+    # Use sidekiq as job worker
+    config.active_job.queue_adapter = :sidekiq
   end
 end
