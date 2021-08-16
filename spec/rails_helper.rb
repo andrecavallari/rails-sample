@@ -22,7 +22,10 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-  config.after(:each, type: :job) { clear_enqueued_jobs }
+  config.after(:each, type: :job) do
+    clear_enqueued_jobs
+    clear_performed_jobs
+  end
 end
 
 ActiveJob::Base.queue_adapter = :test
