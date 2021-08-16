@@ -1,0 +1,8 @@
+br:
+  activerecord:
+    errors:
+      models:
+        filesystem/directory:
+          attributes:
+            name:
+              taken: 'Já existe um diretório com o mesmo nome neste nível'

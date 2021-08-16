@@ -41,6 +41,7 @@ module Sample
 
     # Autoload paths
     config.autoload_paths << Rails.root.join('app/services')
+    config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}')]
 
     # Use sidekiq as job worker
     config.active_job.queue_adapter = :sidekiq
