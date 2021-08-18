@@ -1,8 +1,11 @@
 br:
   activerecord:
+    attributes:
+      filesystem/directory:
+        name: Nome
     errors:
       models:
         filesystem/directory:
           attributes:
             name:
-              taken: 'Já existe um diretório com o mesmo nome neste nível'
+              taken: 'já está cadastrado neste mesmo nível'
