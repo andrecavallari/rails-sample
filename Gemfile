@@ -36,6 +36,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'shoulda-matchers', '~> 5.0.0'
   gem 'super_diff', '~> 0.8.0'
   gem 'vcr', '~> 6.0.0'
   gem 'webmock', '~> 3.14.0'
