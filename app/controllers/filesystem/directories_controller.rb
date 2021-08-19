@@ -12,7 +12,7 @@ module Filesystem
     end
 
     def show
-      render jsonapi: @directory, children: Directory.all
+      render jsonapi: @directory
     end
 
     def create
