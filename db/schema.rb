@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_18_002652) do
+ActiveRecord::Schema.define(version: 2021_08_19_132007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,23 +43,17 @@ ActiveRecord::Schema.define(version: 2021_08_18_002652) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "filesystem_directories", force: :cascade do |t|
+  create_table "filesystem_nodes", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
+    t.string "type", null: false
     t.bigint "parent_id"
-    t.index ["name", "parent_id"], name: "index_filesystem_directories_on_name_and_parent_id", unique: true
-  end
-
-  create_table "filesystem_files", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "directory_id"
-    t.index ["directory_id"], name: "index_filesystem_files_on_directory_id"
+    t.string "name"
+    t.index ["name"], name: "index_filesystem_nodes_on_name"
+    t.index ["parent_id"], name: "index_filesystem_nodes_on_parent_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "filesystem_directories", "filesystem_directories", column: "parent_id", on_delete: :cascade
-  add_foreign_key "filesystem_files", "filesystem_directories", column: "directory_id", on_delete: :cascade
+  add_foreign_key "filesystem_nodes", "filesystem_nodes", column: "parent_id", on_delete: :cascade
 end
