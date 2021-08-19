@@ -21,6 +21,7 @@ gem 'twitter', '~> 7.0.0'
 # gem 'rack-cors'
 
 group :development do
+  gem 'better_errors', '~> 2.9.1'
   gem 'listen', '~> 3.3'
   gem 'rubocop'
   gem 'rubocop-rails'
