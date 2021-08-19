@@ -143,4 +143,29 @@ RSpec.describe 'Directories requests', type: :request do
       end
     end
   end
+
+  describe 'DELETE/filesystem/directories/:id' do
+    subject(:do_request) { delete filesystem_directory_path(directory_id) }
+
+    let!(:directory) { create(:filesystem_directory) }
+
+    context 'when directory exists' do
+      let(:directory_id) { directory.id }
+
+      it 'deletes directory', :aggregate_failures do
+        expect { do_request }.to change(Filesystem::Directory, :count).by(-1)
+        expect(response).to have_http_status(:no_content)
+        expect { directory.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context 'when directory doesnt exists' do
+      let(:directory_id) { 0 }
+
+      it 'returns not found', :aggregate_failures do
+        expect { do_request }.not_to change(Filesystem::Directory, :count)
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
 end
