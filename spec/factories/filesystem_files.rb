@@ -2,8 +2,7 @@
 
 FactoryBot.define do
   factory :filesystem_file, class: 'Filesystem::File' do
-    directory { create(:filesystem_directory) }
-    attachment do
+    content do
       path = Rails.root.join('spec/fixtures/files/Document.pdf')
       ActiveStorage::Blob.create_and_upload!(
         io: File.open(path),
