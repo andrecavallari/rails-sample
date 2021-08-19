@@ -29,7 +29,7 @@ module Filesystem
       if @directory.update(directory_params)
         render jsonapi: @directory
       else
-        render jsonapi_errors: @directory.errors
+        render jsonapi_errors: @directory.errors, status: :unprocessable_entity
       end
     end
 
