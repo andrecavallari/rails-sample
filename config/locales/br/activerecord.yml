@@ -3,10 +3,24 @@ br:
     attributes:
       filesystem/directory:
         name: Nome
+      filesystem/file:
+        name: Nome
+        content: Arquivo
     errors:
+      messages:
+        record_invalid: 'Record invalid'
       models:
         filesystem/directory:
           attributes:
             name:
               blank: 'está em branco'
               taken: 'já está cadastrado neste mesmo nível'
+        filesystem/file:
+          attributes:
+            name:
+              blank: 'está em branco'
+              taken: 'já está cadastrado neste mesmo nível'
+            directory:
+              blank: 'diretório pai não existe'
+            content:
+              blank: 'está em branco'
