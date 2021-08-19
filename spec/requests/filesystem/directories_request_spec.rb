@@ -2,16 +2,20 @@
 
 RSpec.describe 'Directories requests', type: :request do
   describe 'GET /filesystem/directories' do
-    let!(:directories) { create_list(:filesystem_directory, 2) }
+    let!(:directory) { create(:filesystem_directory) }
+    let!(:file) { create(:filesystem_file) }
+    let!(:file_in_directory) { create(:filesystem_file, directory: directory) }
     let(:json_response) { JSON.parse(response.body, symbolize_names: true) }
 
     before { get filesystem_directories_path }
 
     it 'lists directories', :aggregate_failures do
-      expect(json_response[:data][0][:attributes][:id]).to eq(directories[0].id)
-      expect(json_response[:data][0][:attributes][:name]).to eq(directories[0].name)
-      expect(json_response[:data][1][:attributes][:id]).to eq(directories[1].id)
-      expect(json_response[:data][1][:attributes][:name]).to eq(directories[1].name)
+      expect(json_response[:directories][0][:id]).to eq(directory.id)
+      expect(json_response[:directories][0][:name]).to eq(directory.name)
+      expect(json_response[:directories][0][:parent_id]).to eq(directory.parent_id)
+      expect(json_response[:files][0][:name]).to eq(file.name)
+      expect(json_response[:files][0][:parent_id]).to eq(file.parent_id)
+      expect(json_response[:files].pluck(:id)).not_to include(file_in_directory.id)
     end
   end
 
@@ -19,19 +23,38 @@ RSpec.describe 'Directories requests', type: :request do
     let(:directory) { create(:filesystem_directory) }
     let(:json_response) { JSON.parse(response.body, symbolize_names: true) }
 
-    before { get filesystem_directory_path(directory_id) }
-
-    context 'when directory exists' do
+    context 'when directory exists but doesnt have children' do
       let(:directory_id) { directory.id }
+
+      before { get filesystem_directory_path(directory_id) }
 
       it 'returns the directory', :aggregate_failures do
         expect(response).to have_http_status(:ok)
-        expect(json_response[:data][:id].to_i).to eq(directory.id)
+        expect(json_response[:files]).to be_empty
+        expect(json_response[:directories]).to be_empty
+      end
+    end
+
+    context 'when directory exists and has children' do
+      let(:directory_id) { directory.id }
+      let!(:subdirectory) { create(:filesystem_directory, parent: directory) }
+      let!(:file) { create(:filesystem_file, directory: directory) }
+
+      before { get filesystem_directory_path(directory_id) }
+
+      it 'returns directory with children', :aggregate_failures do
+        expect(json_response[:directories][0][:id]).to eq(subdirectory.id)
+        expect(json_response[:directories][0][:name]).to eq(subdirectory.name)
+        expect(json_response[:directories][0][:parent_id]).to eq(directory.id)
+        expect(json_response[:files][0][:name]).to eq(file.name)
+        expect(json_response[:files][0][:parent_id]).to eq(directory.id)
       end
     end
 
     context 'when directory doesnt exists' do
       let(:directory_id) { 0 }
+
+      before { get filesystem_directory_path(directory_id) }
 
       it 'returns not found' do
         expect(response).to have_http_status(:not_found)
@@ -42,11 +65,9 @@ RSpec.describe 'Directories requests', type: :request do
   describe 'POST /filesystem/directories' do
     subject(:do_request) do
       post filesystem_directories_path, params: {
-        data: {
-          attributes: {
-            name: directory_name,
-            parent_id: parent_directory_id
-          }
+        directory: {
+          name: directory_name,
+          parent_id: parent_directory_id
         }
       }
     end
@@ -61,8 +82,8 @@ RSpec.describe 'Directories requests', type: :request do
       it 'creates directory', :aggregate_failures do
         expect { do_request }.to change(Filesystem::Directory, :count).by(1)
         expect(response).to have_http_status(:created)
-        expect(json_response[:data][:attributes][:name]).to eq(directory_name)
-        expect(json_response[:data][:relationships][:parent][:data][:id]).to eq(parent_directory_id.to_s)
+        expect(json_response[:name]).to eq(directory_name)
+        expect(json_response[:parent_id]).to eq(parent_directory_id)
       end
     end
 
@@ -73,8 +94,8 @@ RSpec.describe 'Directories requests', type: :request do
       it 'creates directory in root', :aggregate_failures do
         expect { do_request }.to change(Filesystem::Directory, :count).by(1)
         expect(response).to have_http_status(:created)
-        expect(json_response[:data][:attributes][:name]).to eq(directory_name)
-        expect(json_response[:data][:relationships][:parent][:data]).to be_nil
+        expect(json_response[:name]).to eq(directory_name)
+        expect(json_response[:parent_id]).to be_nil
       end
     end
 
@@ -85,10 +106,7 @@ RSpec.describe 'Directories requests', type: :request do
       it 'creates directory in root', :aggregate_failures do
         expect { do_request }.not_to change(Filesystem::Directory, :count)
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(json_response[:errors][0][:status]).to eq('422')
-        expect(json_response[:errors][0][:title]).to eq('Unprocessable Entity')
-        expect(json_response[:errors][0][:detail]).to eq('Nome está em branco')
-        expect(json_response[:errors][0][:code]).to eq('blank')
+        expect(json_response[:name]).to eq(['está em branco'])
       end
     end
   end
@@ -96,11 +114,9 @@ RSpec.describe 'Directories requests', type: :request do
   describe 'PATCH /filesystem/directories/:id' do
     subject(:do_action) do
       patch filesystem_directory_path(directory_id), params: {
-        data: {
-          attributes: {
-            name: new_name,
-            parent_id: new_parent_id
-          }
+        directory: {
+          name: new_name,
+          parent_id: new_parent_id
         }
       }
     end
