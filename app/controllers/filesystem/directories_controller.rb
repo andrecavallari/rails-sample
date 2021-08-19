@@ -19,7 +19,7 @@ module Filesystem
       directory = Directory.new(directory_params)
 
       if directory.save
-        render jsonapi: directory
+        render jsonapi: directory, status: :created
       else
         render jsonapi_errors: directory.errors, status: :unprocessable_entity
       end
