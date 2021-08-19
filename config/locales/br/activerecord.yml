@@ -8,4 +8,5 @@ br:
         filesystem/directory:
           attributes:
             name:
+              blank: 'está em branco'
               taken: 'já está cadastrado neste mesmo nível'
