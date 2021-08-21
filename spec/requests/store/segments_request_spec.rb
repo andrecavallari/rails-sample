@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Store Segments Requests', type: :request do
-  let(:json_response) { JSON.parse(response.body) }
+  let(:json_response) { JSON.parse(response.body, symbolize_names: true) }
 
   describe 'GET /store/segments' do
     let!(:segments) { create_list(:store_segment, 2) }
@@ -11,10 +11,16 @@ RSpec.describe 'Store Segments Requests', type: :request do
     it 'returns status ok and segments', :aggregate_failures do
       expect(response).to have_http_status(:ok)
       expect(json_response.size).to eq(2)
-      expect(segments[0]).to have_attributes(id: json_response[0]['id'], name: json_response[0]['name'],
-        operation: json_response[0]['operation'])
-      expect(segments[1]).to have_attributes(id: json_response[1]['id'], name: json_response[1]['name'],
-        operation: json_response[1]['operation'])
+      expect(segments[0]).to have_attributes(
+        id: json_response[0][:id],
+        name: json_response[0][:name],
+        operation: json_response[0][:operation]
+      )
+      expect(segments[1]).to have_attributes(
+        id: json_response[1][:id],
+        name: json_response[1][:name],
+        operation: json_response[1][:operation]
+      )
     end
   end
 
@@ -35,8 +41,8 @@ RSpec.describe 'Store Segments Requests', type: :request do
       it 'responds with ok', :aggregate_failures do
         expect { do_request }.to change { Store::Segment.count }.by(1)
         expect(response).to have_http_status(:created)
-        expect(json_response['name']).to eq(segment_name)
-        expect(json_response['operation']).to eq(segment_operation)
+        expect(json_response[:name]).to eq(segment_name)
+        expect(json_response[:operation]).to eq(segment_operation)
       end
     end
 
@@ -89,7 +95,7 @@ RSpec.describe 'Store Segments Requests', type: :request do
       it 'responds with unprocessable entity', :aggregate_failures do
         expect { do_request and segment.reload }.to not_change(segment, :name).and not_change(segment, :operation)
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(json_response).to include('Nome está em branco')
+        expect(json_response[:name]).to include('não pode ficar em branco')
       end
     end
 
@@ -99,7 +105,7 @@ RSpec.describe 'Store Segments Requests', type: :request do
       it 'responds with unprocessable entity', :aggregate_failures do
         expect { do_request and segment.reload }.to not_change(segment, :name).and not_change(segment, :operation)
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(json_response).to include('Operação está em branco')
+        expect(json_response[:operation]).to include('não pode ficar em branco')
       end
     end
 
