@@ -9,11 +9,11 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     env:
-      OPEN_WEATHER_API_KEY: <ADD>
-      TWITTER_API_KEY: <ADD>
-      TWITTER_API_SECRET: <ADD>
-      TWITTER_ACCESS_TOKEN: <ADD>
-      TWITTER_ACCESS_TOKEN_SECRET: <ADD>
+      OPEN_WEATHER_API_KEY: somedisabledkey
+      TWITTER_API_KEY: somedisabledkey
+      TWITTER_API_SECRET: somedisabledkey
+      TWITTER_ACCESS_TOKEN: somedisabledkey
+      TWITTER_ACCESS_TOKEN_SECRET: somedisabledkey
     services:
       postgres:
         image: postgres:13.4-alpine
