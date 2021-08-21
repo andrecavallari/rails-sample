@@ -6,6 +6,8 @@ br:
       filesystem/file:
         name: Nome
         content: Arquivo
+      products/segment:
+        name: 'Nome'
     errors:
       messages:
         record_invalid: 'Record invalid'
@@ -24,3 +26,7 @@ br:
               blank: 'diretório pai não existe'
             content:
               blank: 'está em branco'
+        products/segment:
+          attributes:
+            name:
+              taken: 'já está cadastrado'
