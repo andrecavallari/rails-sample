@@ -1,5 +1,4 @@
 name: RSpec
-
 on:
   - push
   - pull_request
@@ -23,18 +22,14 @@ jobs:
         image: redis:6.2.5-alpine
         ports:
           - 6379:6379
-        options: --entrypoint redis-server
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0.1
           bundler-cache: true
-      - name: Set up Database
+      - name: Run RSpec tests
         run: |
           bin/rails db:create
           bin/rails db:schema:load
-      - name: Run RSpec tests
-        run: |
           bundle exec rspec
