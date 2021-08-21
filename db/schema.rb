@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_19_132007) do
+ActiveRecord::Schema.define(version: 2021_08_21_184831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,26 @@ ActiveRecord::Schema.define(version: 2021_08_19_132007) do
     t.index ["parent_id"], name: "index_filesystem_nodes_on_parent_id"
   end
 
+  create_table "product_products", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name", null: false
+    t.float "price", null: false
+    t.float "final_price", null: false
+    t.bigint "segment_id", null: false
+    t.index ["name"], name: "index_product_products_on_name", unique: true
+    t.index ["segment_id"], name: "index_product_products_on_segment_id"
+  end
+
+  create_table "product_segments", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name", null: false
+    t.string "operation", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "filesystem_nodes", "filesystem_nodes", column: "parent_id", on_delete: :cascade
+  add_foreign_key "product_products", "product_segments", column: "segment_id", on_delete: :restrict
 end
