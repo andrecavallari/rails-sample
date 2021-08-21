@@ -1,0 +1,35 @@
+name: RSpec
+on:
+  - push
+  - pull_request
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    env:
+      OPEN_WEATHER_API_KEY: somedisabledkey
+      TWITTER_API_KEY: somedisabledkey
+      TWITTER_API_SECRET: somedisabledkey
+      TWITTER_ACCESS_TOKEN: somedisabledkey
+      TWITTER_ACCESS_TOKEN_SECRET: somedisabledkey
+    services:
+      postgres:
+        image: postgres:13.4-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+      redis:
+        image: redis:6.2.5-alpine
+        ports:
+          - 6379:6379
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.1
+          bundler-cache: true
+      - name: Run RSpec tests
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
+          bundle exec rspec
