@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :files
   end
 
-  namespace :products do
+  namespace :store do
     resources :segments
     resources :products
   end

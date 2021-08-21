@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Products
+module Store
   class ApplicationController < ::ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render404
 

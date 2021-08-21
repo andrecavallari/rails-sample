@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Products
+module Store
   class Product < ApplicationRecord
-    belongs_to :segment, class_name: 'Products::Segment'
+    belongs_to :segment, class_name: 'Store::Segment'
 
     validates :name, presence: true, uniqueness: true
     validates :price, presence: true, numericality: { greater_than: 0 }

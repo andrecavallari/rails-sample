@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Products
+module Store
   def self.table_name_prefix
-    'product_'
+    'store_'
   end
 end

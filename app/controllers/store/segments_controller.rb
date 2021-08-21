@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Products
+module Store
   class SegmentsController < ApplicationController
     before_action :set_segment, only: %i[update destroy]
 
