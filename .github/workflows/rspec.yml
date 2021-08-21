@@ -1,13 +1,8 @@
 name: RSpec
 
 on:
-  pull_request:
-    paths-ignore:
-      - '**.md'
-  push:
-    paths-ignore:
-      - '**.md'
-
+  - push
+  - pull_request
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -31,13 +26,6 @@ jobs:
         options: --entrypoint redis-server
     steps:
       - uses: actions/checkout@v2
-      - name: Add Ubuntu Source Repository
-        uses: myci-actions/add-deb-repo@8
-        with:
-          repo: deb-src http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse
-          repo-name: ubuntu-source
-          keys: 379CE192D401AB61
-          key-server: keyserver.ubuntu.com
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
