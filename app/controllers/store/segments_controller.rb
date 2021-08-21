@@ -13,13 +13,13 @@ module Store
 
       render json: @segment, status: :created and return if @segment.save
 
-      render json: @segment.errors.full_messages, status: :unprocessable_entity
+      render json: @segment.errors, status: :unprocessable_entity
     end
 
     def update
       render json: @segment and return if @segment.update(segment_params)
 
-      render json: @segment.errors.full_messages, status: :unprocessable_entity
+      render json: @segment.errors, status: :unprocessable_entity
     end
 
     def destroy
