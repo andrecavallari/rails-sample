@@ -9,6 +9,10 @@ br:
       store/segment:
         name: 'Nome'
         operation: 'Operação'
+      store/product:
+        name: 'Nome'
+        price: 'Preço'
+        segment: 'Segmento'
     errors:
       messages:
         record_invalid: 'Record invalid'
@@ -16,21 +20,29 @@ br:
         filesystem/directory:
           attributes:
             name:
-              blank: 'está em branco'
+              blank: 'não pode ficar em branco'
               taken: 'já está cadastrado neste mesmo nível'
         filesystem/file:
           attributes:
             name:
-              blank: 'está em branco'
+              blank: 'não pode ficar em branco'
               taken: 'já está cadastrado neste mesmo nível'
             directory:
               blank: 'diretório pai não existe'
             content:
-              blank: 'está em branco'
+              blank: 'não pode ficar em branco'
         store/segment:
           attributes:
             name:
-              blank: 'está em branco'
+              blank: 'não pode ficar em branco'
               taken: 'já está cadastrado'
             operation:
-              blank: 'está em branco'
+              blank: 'não pode ficar em branco'
+        store/product:
+          attributes:
+            name:
+              blank: 'não pode ficar em branco'
+              taken: 'já está cadastrado'
+            price:
+              blank: 'não pode ficar em branco'
+
