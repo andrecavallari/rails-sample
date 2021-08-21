@@ -3,4 +3,9 @@ Rails.application.routes.draw do
     resources :directories
     resources :files
   end
+
+  namespace :store do
+    resources :segments
+    resources :products
+  end
 end

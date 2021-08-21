@@ -8,6 +8,7 @@ ruby '3.0.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'httparty', '~> 0.18.1'
 gem 'jsonapi.rb', '~> 1.7.0'
+gem 'keisan', '~> 0.9.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.4'

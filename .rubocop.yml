@@ -20,3 +20,7 @@ Metrics/BlockLength:
   Enabled: false
 RSpec/ExampleLength:
   Enabled: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
