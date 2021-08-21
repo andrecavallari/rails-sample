@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_08_21_184831) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
     t.string "operation", null: false
+    t.index ["name"], name: "index_store_segments_on_name", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
