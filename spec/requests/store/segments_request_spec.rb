@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Products Segments Requests', type: :request do
+RSpec.describe 'Store Segments Requests', type: :request do
   let(:json_response) { JSON.parse(response.body) }
 
-  describe 'GET /products/segments' do
-    let!(:segments) { create_list(:products_segment, 2) }
+  describe 'GET /store/segments' do
+    let!(:segments) { create_list(:store_segment, 2) }
 
-    before { get products_segments_path }
+    before { get store_segments_path }
 
     it 'returns status ok and segments', :aggregate_failures do
       expect(response).to have_http_status(:ok)
@@ -18,9 +18,9 @@ RSpec.describe 'Products Segments Requests', type: :request do
     end
   end
 
-  describe 'POST /products/segments' do
+  describe 'POST /store/segments' do
     subject(:do_request) do
-      post products_segments_path, params: {
+      post store_segments_path, params: {
         segment: {
           name: segment_name,
           operation: segment_operation
@@ -33,7 +33,7 @@ RSpec.describe 'Products Segments Requests', type: :request do
 
     context 'when segment name and operation are filled' do
       it 'responds with ok', :aggregate_failures do
-        expect { do_request }.to change { Products::Segment.count }.by(1)
+        expect { do_request }.to change { Store::Segment.count }.by(1)
         expect(response).to have_http_status(:created)
         expect(json_response['name']).to eq(segment_name)
         expect(json_response['operation']).to eq(segment_operation)
@@ -44,7 +44,7 @@ RSpec.describe 'Products Segments Requests', type: :request do
       let(:segment_name) { nil }
 
       it 'responds with unprocessable entity', :aggregate_failures do
-        expect { do_request }.not_to change(Products::Segment, :count)
+        expect { do_request }.not_to change(Store::Segment, :count)
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -53,15 +53,15 @@ RSpec.describe 'Products Segments Requests', type: :request do
       let(:segment_operation) { nil }
 
       it 'responds with unprocessable entity', :aggregate_failures do
-        expect { do_request }.not_to change(Products::Segment, :count)
+        expect { do_request }.not_to change(Store::Segment, :count)
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
-  describe 'PATCH /products/segments/:id' do
+  describe 'PATCH /store/segments/:id' do
     subject(:do_request) do
-      patch products_segment_path(segment_id), params: {
+      patch store_segment_path(segment_id), params: {
         segment: {
           name: segment_name,
           operation: segment_operation
@@ -69,7 +69,7 @@ RSpec.describe 'Products Segments Requests', type: :request do
       }
     end
 
-    let!(:segment) { create(:products_segment, name: 'Imported', operation: 'price + (price * 0.2)') }
+    let!(:segment) { create(:store_segment, name: 'Imported', operation: 'price + (price * 0.2)') }
     let(:segment_id) { segment.id }
     let(:segment_name) { 'National' }
     let(:segment_operation) { 'price - (price * 0.1)' }
@@ -114,16 +114,16 @@ RSpec.describe 'Products Segments Requests', type: :request do
     end
   end
 
-  describe 'DELETE /products/segments/:id' do
-    subject(:do_request) { delete products_segment_path(segment_id) }
+  describe 'DELETE /store/segments/:id' do
+    subject(:do_request) { delete store_segment_path(segment_id) }
 
-    let!(:segment) { create(:products_segment) }
+    let!(:segment) { create(:store_segment) }
 
     context 'when segment exists' do
       let(:segment_id) { segment.id }
 
       it 'deletes the segment', :aggregate_failures do
-        expect { do_request }.to change(Products::Segment, :count).by(-1)
+        expect { do_request }.to change(Store::Segment, :count).by(-1)
         expect(response).to have_http_status(:no_content)
       end
     end

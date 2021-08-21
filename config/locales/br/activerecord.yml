@@ -6,7 +6,7 @@ br:
       filesystem/file:
         name: Nome
         content: Arquivo
-      products/segment:
+      store/segment:
         name: 'Nome'
         operation: 'Operação'
     errors:
@@ -27,7 +27,7 @@ br:
               blank: 'diretório pai não existe'
             content:
               blank: 'está em branco'
-        products/segment:
+        store/segment:
           attributes:
             name:
               blank: 'está em branco'

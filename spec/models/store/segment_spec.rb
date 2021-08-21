@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Products::Segment, type: :model do
+RSpec.describe Store::Segment, type: :model do
   describe 'validations' do
-    before { create(:products_segment) }
+    before { create(:store_segment) }
 
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name) }
