@@ -106,7 +106,7 @@ RSpec.describe 'Directories requests', type: :request do
       it 'creates directory in root', :aggregate_failures do
         expect { do_request }.not_to change(Filesystem::Directory, :count)
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(json_response[:name]).to eq(['está em branco'])
+        expect(json_response[:name]).to eq(['não pode ficar em branco'])
       end
     end
   end
