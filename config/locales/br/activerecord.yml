@@ -45,4 +45,7 @@ br:
               taken: 'já está cadastrado'
             price:
               blank: 'não pode ficar em branco'
+            segment:
+              required: 'é obrigatório'
+              blank: 'não pode ficar em branco'
 
