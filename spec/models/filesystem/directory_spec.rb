@@ -9,7 +9,7 @@ RSpec.describe Filesystem::Directory, type: :model do
 
   describe 'validations' do
     let!(:directory) { create(:filesystem_directory) }
-    let(:new_directory) { build(:filesystem_directory, name:directory.name, parent_id:directory.parent_id) }
+    let(:new_directory) { build(:filesystem_directory, name: directory.name, parent_id: directory.parent_id) }
 
     it { is_expected.to validate_presence_of(:name) }
 
