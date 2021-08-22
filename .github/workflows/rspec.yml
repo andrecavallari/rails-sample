@@ -1,4 +1,4 @@
-name: RSpec
+name: RSpec & Undercover
 on:
   - push
   - pull_request
