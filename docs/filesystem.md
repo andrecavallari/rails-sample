@@ -21,7 +21,7 @@ GET: `/filesystem/directories`
 
 ### Response
 Code: 200 (OK)
-```
+```json
 {
   "directories": [
     {
@@ -52,7 +52,7 @@ You can create a directory sending `name` (required) and `parent_id` (optional),
 POST: `/filesystem/directories`
 
 ### Request body example
-```
+```json
 {
 	"directory": {
 		"name": "Directory name",
@@ -62,7 +62,7 @@ POST: `/filesystem/directories`
 ```
 
 ### Response body example
-```
+```json
 {
   "id": 22,
   "created_at": "2021-08-19T18:14:32.401Z",
@@ -80,7 +80,7 @@ To update a directory you can send `name` and/or `parent_id` as params, both are
 PATCH `/filesystem/directories/:id`
 
 ### Request body example
-```
+```json
 {
 	"directory": {
 		"name": "New Name",
@@ -90,7 +90,7 @@ PATCH `/filesystem/directories/:id`
 ```
 
 ### Response example
-```
+```json
 {
   "name": "New Name",
   "parent_id": null,
@@ -123,7 +123,7 @@ Type: multipart/form-data
 
 ### Response
 Code: 200 (OK)
-```
+```json
 {
   "id": 23,
   "created_at": "2021-08-22T01:08:12.619Z",
@@ -141,7 +141,7 @@ You can only update wich directory the file will be stored, passing the argument
 PATCH `/filesystem/files/:id`
 
 ### Request body example
-```
+```json
 {
 	"file": {
 		"parent_id": 1
@@ -151,7 +151,7 @@ PATCH `/filesystem/files/:id`
 
 
 ### Response example
-```
+```json
 {
   "parent_id": null,
   "id": 18,
