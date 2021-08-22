@@ -1,24 +1,26 @@
-# README
+# Sample rails app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a sample rails app for showing my skills with ruby on rails
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+* Docker
+* docker-compose
 
-* System dependencies
+## Get started
 
-* Configuration
+1. Run `docker-compose up` to get the server running
+2. Run `docker-compose run app bundle exec rake db:migrate` to run migrations
 
-* Database creation
+## Tests
 
-* Database initialization
+To run tests just execute `docker-compose run app bundle exec rspec`
 
-* How to run the test suite
+## Rubocop
 
-* Services (job queues, cache servers, search engines, etc.)
+To execute rubocop: `docker-compose run app bundle exec rubocop`
 
-* Deployment instructions
+## Contents
 
-* ...
+- [Filesystem](docs/filesystem.md)
+- [Simple Store](docs/store.md)

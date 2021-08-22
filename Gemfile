@@ -23,6 +23,7 @@ gem 'twitter', '~> 7.0.0'
 
 group :development do
   gem 'better_errors', '~> 2.9.1'
+  gem 'foreman', '~> 0.87.2'
   gem 'listen', '~> 3.3'
   gem 'rubocop'
   gem 'rubocop-rails'
