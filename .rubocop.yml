@@ -5,7 +5,7 @@ inherit_mode:
   merge:
     - Exclude
 AllCops:
-  TargetRubyVersion: 3.0.1
+  TargetRubyVersion: 3.0.2
   NewCops: enable
   Exclude:
     - db/**/*
