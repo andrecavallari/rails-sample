@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Tweet Weather Request' do
+RSpec.describe 'TweetWeather Request', type: :request do
   describe 'POST /tweet_weather' do
     subject(:do_request) do
       post tweet_weather_index_path, params: {
