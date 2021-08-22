@@ -28,7 +28,7 @@ jobs:
         with:
           ruby-version: 3.0.2
           bundler-cache: true
-      - name: Run RSpec tests
+      - name: Run RSpec and undercover
         run: |
           bin/rails db:create
           bin/rails db:schema:load
