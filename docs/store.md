@@ -54,10 +54,10 @@ POST `/products/segments`
 ### Request body
 ```json
 {
-	"segment": {
-		"name": "Imported",
-		"operation": "price + (price * 0.10)"
-	}
+  "segment": {
+    "name": "Imported",
+    "operation": "price + (price * 0.10)"
+  }
 }
 ```
 
@@ -80,10 +80,10 @@ You can update the segment name and the operation, in the operation param a vali
 PATCH `/store/segments/:id`
 ```json
 {
-	"segment": {
+  "segment": {
     "name": "Imported",
-	  "operation": "price + (price * 0.35)"
-	}
+    "operation": "price + (price * 0.35)"
+  }
 }
 ```
 
@@ -103,3 +103,99 @@ PATCH `/store/segments/:id`
 This deletes a segment, but it´s restricted to not be assigned to any product, otherwise it will return an error.
 ### Request
 DELETE `/store/segments/:id`
+
+# Products
+
+## List products
+
+### Request
+GET `/store/products`
+
+### Response body
+```json
+[
+  {
+    "id": 1,
+    "created_at": "2021-08-21T20:42:05.475Z",
+    "updated_at": "2021-08-21T20:42:05.475Z",
+    "name": "Notebook",
+    "price": 1000.0,
+    "final_price": 900.0,
+    "segment_id": 1
+  },
+  {
+    "id": 2,
+    "created_at": "2021-08-21T20:42:17.216Z",
+    "updated_at": "2021-08-21T20:42:17.216Z",
+    "name": "Mouse",
+    "price": 100.0,
+    "final_price": 150.0,
+    "segment_id": 2
+  },
+]
+```
+
+## Create product
+
+Creates a product, the params should be `name`, `price` and `segment_id` only, a `final_price` will be calculated based on the segment assigned to the product.
+
+### Request
+POST `/store/products`
+```json
+{
+  "product": {
+    "name": "Gamer notebook",
+    "price": 1000.0,
+    "segment_id": 1
+	}
+}
+```
+
+### Response
+```json
+{
+  "id": 4,
+  "created_at": "2021-08-21T20:42:22.671Z",
+  "updated_at": "2021-08-21T20:42:22.671Z",
+  "name": "Gamer notebook",
+  "price": 1000.0,
+  "final_price": 1150.0,
+  "segment_id": 1
+}
+```
+
+## Update product
+
+Like the create product, you can update the product `name`, `price` and `segment_id`, and the final price will be calculated based on the segment assigned to the product.
+
+### Request
+PATCH `/store/products/:id`
+```json
+{
+  "product": {
+    "price": 10000.0,
+    "segment_id": 2,
+    "name": "Top notebook"
+  }
+}
+```
+
+### Response body
+```json
+{
+  "price": 10000.0,
+  "id": 1,
+  "final_price": 13500.0,
+  "created_at": "2021-08-21T20:42:22.671Z",
+  "updated_at": "2021-08-21T20:42:45.612Z",
+  "name": "Top notebook",
+  "segment_id": 2
+}
+```
+
+## Delete product
+
+This will delete the product
+
+### Request
+DELETE `/store/products/:id`
