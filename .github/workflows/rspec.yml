@@ -33,3 +33,4 @@ jobs:
           bin/rails db:create
           bin/rails db:schema:load
           bundle exec rspec
+          bundle exec undercover
