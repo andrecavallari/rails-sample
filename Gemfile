@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.1'
+ruby '3.0.2'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'httparty', '~> 0.18.1'
@@ -41,7 +41,10 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 5.0.0'
+  gem 'simplecov', '~> 0.21.2'
+  gem 'simplecov-lcov', '~> 0.8.0'
   gem 'super_diff', '~> 0.8.0'
+  gem 'undercover', '~> 0.4.3'
   gem 'vcr', '~> 6.0.0'
   gem 'webmock', '~> 3.14.0'
 end
