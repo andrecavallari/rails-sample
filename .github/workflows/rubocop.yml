@@ -11,5 +11,4 @@ jobs:
           ruby-version: 3.0.2
           bundler-cache: true
       - name: Run Rubocop
-        run: |
-          bin/rubocop
+        run: bundle exec rubocop
