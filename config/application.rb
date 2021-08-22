@@ -45,5 +45,10 @@ module Sample
 
     # Use sidekiq as job worker
     config.active_job.queue_adapter = :sidekiq
+
+    # Use session for sidekiq
+    config.session_store :cookie_store, key: '_interslice_session'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
   end
 end
