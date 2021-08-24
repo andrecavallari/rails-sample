@@ -11,6 +11,7 @@ jobs:
       TWITTER_API_SECRET: somedisabledkey
       TWITTER_ACCESS_TOKEN: somedisabledkey
       TWITTER_ACCESS_TOKEN_SECRET: somedisabledkey
+      JWT_SECRET: jwtsecret
     services:
       postgres:
         image: postgres:13.4-alpine
