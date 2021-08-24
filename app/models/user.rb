@@ -9,17 +9,6 @@ class User < ApplicationRecord
 
   before_save :crypt_password
 
-  def self.login(email, password)
-    user = User.find_by(email: email)
-    return false unless user
-
-    password == Password.new(user.password) ? user : false
-  end
-
-  def valid_password?(password_param)
-    password_param == Password.new(password)
-  end
-
   private
 
   def crypt_password
