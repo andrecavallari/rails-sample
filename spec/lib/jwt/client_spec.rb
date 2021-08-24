@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe JWT::Client do
-  let(:token) { 'eyJhbGciOiJIUzI1NiJ9.eyJmb28iOiJiYXIifQ.YQb8ifLo99itNsXaroV7ZGLBW08AGVcsErpndWSs-z8' }
+  let(:token) { 'eyJhbGciOiJIUzI1NiJ9.eyJmb28iOiJiYXIifQ.oB-hPP-iM8gpHyhhTnltlh9Ph8WdapCcPRZ2zJ_AwBs' }
+
+  before { stub_const('ENV', 'JWT_SECRET' => 'secret') }
 
   describe '.encode' do
     subject(:encode) { described_class.encode(foo: 'bar') }
