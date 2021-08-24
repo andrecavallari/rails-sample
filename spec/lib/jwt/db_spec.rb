@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe JWT::DB do
-  before(:all) { described_class.clear }
-  after(:all) { described_class.clear }
+  before { described_class.clear }
+
+  after { described_class.clear }
 
   describe '.create' do
     subject(:action) { described_class.create(user_id, properties) }
