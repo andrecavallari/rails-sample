@@ -38,4 +38,4 @@ jobs:
       - name: Run Undercover
         run: |
           git fetch
-          bundle exec undercover --compare origin/master
+          bundle exec undercover --compare master
