@@ -24,7 +24,7 @@ end
 Warden::Strategies.add(:bearer_token) do
   def authenticate!
     access_token = request.headers['authorization']&.split&.last
-    user, jti = Auth::BearerTokenService.new(access_token).call
+    user = Auth::BearerTokenService.new(access_token).call
     return fail!('Unauthorized') if user.blank?
 
     success!(user)
