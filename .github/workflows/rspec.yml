@@ -35,4 +35,4 @@ jobs:
       - name: Run RSpec
         run: bundle exec rspec
       - name: Run Undercover
-        run: bundle exec undercover
+        run: bundle exec undercover --compare origin/master
