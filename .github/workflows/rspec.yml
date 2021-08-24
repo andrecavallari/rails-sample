@@ -36,4 +36,6 @@ jobs:
       - name: Run RSpec
         run: bundle exec rspec
       - name: Run Undercover
-        run: bundle exec undercover --compare origin/master
+        run: |
+          git fetch
+          bundle exec undercover --compare origin/master
