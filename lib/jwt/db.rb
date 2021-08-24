@@ -46,6 +46,7 @@ module JWT
         "#{NAMESPACE}:#{user_id}:#{uid}"
       end
 
+      # :nocov:
       def next_available_uid_key(user_id)
         loop do
           uid = SecureRandom.hex(10)
@@ -53,6 +54,7 @@ module JWT
           return [uid, key] unless redis.exists?(key)
         end
       end
+      # :nocov:
 
       def redis
         @redis ||= Redis.new url: ENV.fetch(
