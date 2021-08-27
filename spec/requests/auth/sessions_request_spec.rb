@@ -80,8 +80,21 @@ RSpec.describe 'Auth Requests', type: :request do
     let!(:headers) { auth_header(user) }
     let!(:jti) { JWT::DB.create(user.id, { user_agent: 'Webkit' }) }
 
-    it 'excludes a key' do
-      expect { do_request }.to change { JWT::DB.user_keys(user.id).size }.by(-1)
+    context 'when key exists' do
+      it 'excludes a key', :aggregate_failures do
+        expect { do_request }.to change { JWT::DB.user_keys(user.id).size }.by(-1)
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+
+    context 'when key doesnt exists' do
+      let(:jti) { SecureRandom.hex(10) }
+
+      before { do_request }
+
+      it 'returns not found', :aggregate_failures do
+        expect(response).to have_http_status(:not_found)
+      end
     end
   end
 end
