@@ -1,0 +1,3 @@
+--git-dir undercover_repo/.git
+--compare origin/master
+--lcov coverage/lcov/app.lcov
