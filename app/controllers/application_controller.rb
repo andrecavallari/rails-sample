@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::API
   protected
 
+  # :nocov:
   def warden
     request.env['warden']
   end
@@ -10,4 +11,5 @@ class ApplicationController < ActionController::API
   def current_user
     warden.user
   end
+  # :nocov:
 end
