@@ -35,6 +35,6 @@ jobs:
           bin/rails db:schema:load
       - name: Run RSpec
         run: |
-          git fetch
+          git fetch && git pull
           bundle exec rspec
           bundle exec undercover -c origin/master
