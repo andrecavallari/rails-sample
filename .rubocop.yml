@@ -27,3 +27,5 @@ Layout/MultilineMethodCallIndentation:
   Enabled: false
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
+Lint/MissingSuper:
+  Enabled: false
