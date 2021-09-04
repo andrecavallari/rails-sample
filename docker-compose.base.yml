@@ -1,0 +1,21 @@
+services:
+  base:
+    tty: true
+    stdin_open: true
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - DB_HOST=db
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_DB_REDIS_URL=redis://redis:6379/0
+  postgres_base:
+    image: postgres:13.4-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+  redis_base:
+    image:  redis:6.2.5-alpine
+    ports:
+      - "6379:6379"

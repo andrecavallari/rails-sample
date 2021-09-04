@@ -1,31 +1,35 @@
 version: '3.8'
 services:
-  app:
-    build: .
-    volumes:
-      - .:/app
+  rails:
+    container_name: rails
+    extends:
+      file: docker-compose.base.yml
+      service: base
+    command: bundle exec puma -C config/puma.rb
     ports:
       - "5000:5000"
     links:
       - db
       - redis
-    command:
-      - foreman start
-    environment:
-      - DB_HOST=db
-      - REDIS_URL=redis://redis:6379/0
+  sidekiq:
+    container_name: sidekiq
+    extends:
+      file: docker-compose.base.yml
+      service: base
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    links:
+      - db
+      - redis
   db:
-    image: postgres:13.4-alpine
-    ports:
-      - "5432:5432"
+    extends:
+      file: docker-compose.base.yml
+      service: postgres_base
     volumes:
       - pg_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
   redis:
-    image:  redis:6.2.5-alpine
-    ports:
-      - "6379:6379"
+    extends:
+      file: docker-compose.base.yml
+      service: redis_base
     volumes:
       - redis_data:/data
 volumes:

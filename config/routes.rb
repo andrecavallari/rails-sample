@@ -5,6 +5,8 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
+  root 'home#index'
+
   namespace :auth do
     post '/login', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'
