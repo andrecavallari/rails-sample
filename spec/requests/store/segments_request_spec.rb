@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Store Segments Requests', type: :request do
+  let(:user) { create(:user) }
   let(:json_response) { JSON.parse(response.body, symbolize_names: true) }
 
   describe 'GET /store/segments' do
     let!(:segments) { create_list(:store_segment, 2) }
 
-    before { get store_segments_path }
+    before { get store_segments_path, headers: auth_header(user) }
 
     it 'returns status ok and segments', :aggregate_failures do
       expect(response).to have_http_status(:ok)
@@ -31,7 +32,7 @@ RSpec.describe 'Store Segments Requests', type: :request do
           name: segment_name,
           operation: segment_operation
         }
-      }
+      }, headers: auth_header(user)
     end
 
     let(:segment_name) { 'Some segment name' }
@@ -72,7 +73,7 @@ RSpec.describe 'Store Segments Requests', type: :request do
           name: segment_name,
           operation: segment_operation
         }
-      }
+      }, headers: auth_header(user)
     end
 
     let!(:segment) { create(:store_segment, name: 'Imported', operation: 'price + (price * 0.2)') }
@@ -121,7 +122,7 @@ RSpec.describe 'Store Segments Requests', type: :request do
   end
 
   describe 'DELETE /store/segments/:id' do
-    subject(:do_request) { delete store_segment_path(segment_id) }
+    subject(:do_request) { delete store_segment_path(segment_id), headers: auth_header(user) }
 
     let!(:segment) { create(:store_segment) }
 

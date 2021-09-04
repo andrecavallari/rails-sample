@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Directories requests', type: :request do
+  let(:user) { create(:user) }
+
   describe 'GET /filesystem/directories' do
     let!(:directory) { create(:filesystem_directory) }
     let!(:file) { create(:filesystem_file) }
     let!(:file_in_directory) { create(:filesystem_file, directory: directory) }
     let(:json_response) { JSON.parse(response.body, symbolize_names: true) }
 
-    before { get filesystem_directories_path }
+    before { get filesystem_directories_path, headers: auth_header(user) }
 
     it 'lists directories', :aggregate_failures do
       expect(json_response[:directories][0][:id]).to eq(directory.id)
@@ -26,7 +28,7 @@ RSpec.describe 'Directories requests', type: :request do
     context 'when directory exists but doesnt have children' do
       let(:directory_id) { directory.id }
 
-      before { get filesystem_directory_path(directory_id) }
+      before { get filesystem_directory_path(directory_id), headers: auth_header(user) }
 
       it 'returns the directory', :aggregate_failures do
         expect(response).to have_http_status(:ok)
@@ -40,7 +42,7 @@ RSpec.describe 'Directories requests', type: :request do
       let!(:subdirectory) { create(:filesystem_directory, parent: directory) }
       let!(:file) { create(:filesystem_file, directory: directory) }
 
-      before { get filesystem_directory_path(directory_id) }
+      before { get filesystem_directory_path(directory_id), headers: auth_header(user) }
 
       it 'returns directory with children', :aggregate_failures do
         expect(json_response[:directories][0][:id]).to eq(subdirectory.id)
@@ -54,7 +56,7 @@ RSpec.describe 'Directories requests', type: :request do
     context 'when directory doesnt exists' do
       let(:directory_id) { 0 }
 
-      before { get filesystem_directory_path(directory_id) }
+      before { get filesystem_directory_path(directory_id), headers: auth_header(user) }
 
       it 'returns not found' do
         expect(response).to have_http_status(:not_found)
@@ -69,7 +71,7 @@ RSpec.describe 'Directories requests', type: :request do
           name: directory_name,
           parent_id: parent_directory_id
         }
-      }
+      }, headers: auth_header(user)
     end
 
     let!(:parent) { create(:filesystem_directory) }
@@ -118,7 +120,7 @@ RSpec.describe 'Directories requests', type: :request do
           name: new_name,
           parent_id: new_parent_id
         }
-      }
+      }, headers: auth_header(user)
     end
 
     let(:parent) { create(:filesystem_directory, name: 'Root') }
@@ -161,7 +163,7 @@ RSpec.describe 'Directories requests', type: :request do
   end
 
   describe 'DELETE/filesystem/directories/:id' do
-    subject(:do_request) { delete filesystem_directory_path(directory_id) }
+    subject(:do_request) { delete filesystem_directory_path(directory_id), headers: auth_header(user) }
 
     let!(:directory) { create(:filesystem_directory) }
 
