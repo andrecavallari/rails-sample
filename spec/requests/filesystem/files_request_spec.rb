@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Directories requests', type: :request do
+  let(:user) { create(:user) }
   let(:json_response) { JSON.parse(response.body, symbolize_names: true) }
 
   describe 'POST /filesystem/files' do
@@ -10,7 +11,7 @@ RSpec.describe 'Directories requests', type: :request do
           content: content,
           parent_id: directory.id
         }
-      }
+      }, headers: auth_header(user)
     end
 
     let(:directory) { create(:filesystem_directory) }
@@ -43,7 +44,7 @@ RSpec.describe 'Directories requests', type: :request do
         file: {
           parent_id: parent_id
         }
-      }
+      }, headers: auth_header(user)
     end
 
     let!(:file) { create(:filesystem_file) }
@@ -84,7 +85,7 @@ RSpec.describe 'Directories requests', type: :request do
   end
 
   describe 'DELETE/filesystem/files/:id' do
-    subject(:do_request) { delete filesystem_file_path(file_id) }
+    subject(:do_request) { delete filesystem_file_path(file_id), headers: auth_header(user) }
 
     context 'when file exists' do
       let!(:file) { create(:filesystem_file) }

@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   namespace :auth do
     post '/login', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'
-    get '/sessions', to: 'sessions#index'
-    delete '/revoke/:jti', to: 'sessions#revoke'
   end
 
   resources :tweet_weather, only: %i[create]

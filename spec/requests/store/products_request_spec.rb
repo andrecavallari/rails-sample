@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Store Products Requests', type: :request do
+  let(:user) { create(:user) }
   let(:json_response) { JSON.parse(response.body, symbolize_names: true) }
 
   describe 'GET /store/products' do
     let!(:products) { create_list(:store_product, 2) }
 
-    before { get store_products_path }
+    before { get store_products_path, headers: auth_header(user) }
 
     it 'responds with Ok', :aggregate_failures do
       expect(response).to have_http_status(:ok)
@@ -33,7 +34,7 @@ RSpec.describe 'Store Products Requests', type: :request do
           price: product_price,
           segment_id: segment_id
         }
-      }
+      }, headers: auth_header(user)
     end
 
     let(:product_name) { 'Mouse' }
@@ -90,7 +91,9 @@ RSpec.describe 'Store Products Requests', type: :request do
   end
 
   describe 'PATCH /store/products/:id' do
-    subject(:do_request) { patch store_product_path(product_id), params: { product: product_params } }
+    subject(:do_request) do
+      patch store_product_path(product_id), params: { product: product_params }, headers: auth_header(user)
+    end
 
     let(:product_id) { product.id }
     let(:segment) { create(:store_segment, name: 'Imported', operation: 'price + (price * 0.1)') }
@@ -133,7 +136,7 @@ RSpec.describe 'Store Products Requests', type: :request do
   end
 
   describe 'DELETE /store/products/:id' do
-    subject(:do_request) { delete store_product_path(product_id) }
+    subject(:do_request) { delete store_product_path(product_id), headers: auth_header(user) }
 
     let!(:product) { create(:store_product) }
     let(:product_id) { product.id }
