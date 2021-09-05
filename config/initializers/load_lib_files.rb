@@ -2,5 +2,5 @@
 
 require 'open_weather_api'
 require 'twitter_client'
-require 'jwt/client'
-require 'jwt/db'
+require 'auth/config'
+require 'auth/database'
