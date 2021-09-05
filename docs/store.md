@@ -22,7 +22,8 @@ The segments are like categories, you can create segments and assign them to pro
 ## List segments
 
 ### Request
-GET `/store/segments`
+- GET `/store/segments`
+- Headers: `Authorization: Bearer <token>`
 
 ### Response body
 ```json
@@ -49,7 +50,8 @@ GET `/store/segments`
 In the `operation` param a variable named `price` should be used for the price value, for example to have a 10% of discount for the price of the product, you can use the following calculation: `price - (price * 0.1)`, and apply this segment to the product.
 
 ### Request
-POST `/products/segments`
+- POST `/products/segments`
+- Headers: `Authorization: Bearer <token>`
 
 ### Request body
 ```json
@@ -77,7 +79,9 @@ POST `/products/segments`
 You can update the segment name and the operation, in the operation param a valid calculation using `price` as product price value should be used.
 
 ### Request
-PATCH `/store/segments/:id`
+- PATCH `/store/segments/:id`
+- Headers: `Authorization: Bearer <token>`
+
 ```json
 {
   "segment": {
@@ -102,14 +106,16 @@ PATCH `/store/segments/:id`
 
 This deletes a segment, but it´s restricted to not be assigned to any product, otherwise it will return an error.
 ### Request
-DELETE `/store/segments/:id`
+- DELETE `/store/segments/:id`
+- Headers: `Authorization: Bearer <token>`
 
 # Products
 
 ## List products
 
 ### Request
-GET `/store/products`
+- GET `/store/products`
+- Headers: `Authorization: Bearer <token>`
 
 ### Response body
 ```json
@@ -140,7 +146,9 @@ GET `/store/products`
 Creates a product, the params should be `name`, `price` and `segment_id` only, a `final_price` will be calculated based on the segment assigned to the product.
 
 ### Request
-POST `/store/products`
+- POST `/store/products`
+- Headers: `Authorization: Bearer <token>`
+
 ```json
 {
   "product": {
@@ -153,7 +161,7 @@ POST `/store/products`
 
 ### Response
 ```json
-{
+ {
   "id": 4,
   "created_at": "2021-08-21T20:42:22.671Z",
   "updated_at": "2021-08-21T20:42:22.671Z",
@@ -169,7 +177,9 @@ POST `/store/products`
 Like the create product, you can update the product `name`, `price` and `segment_id`, and the final price will be calculated based on the segment assigned to the product.
 
 ### Request
-PATCH `/store/products/:id`
+- PATCH `/store/products/:id`
+- Headers: `Authorization: Bearer <token>`
+
 ```json
 {
   "product": {
@@ -198,4 +208,5 @@ PATCH `/store/products/:id`
 This will delete the product
 
 ### Request
-DELETE `/store/products/:id`
+- DELETE `/store/products/:id`
+- Headers: `Authorization: Bearer <token>`

@@ -17,7 +17,8 @@ This is the filesystem part of this app, you can create directories with subdire
 ## List directories
 
 ### Request
-GET: `/filesystem/directories`
+- GET: `/filesystem/directories`
+- Headers: `Authorization: Bearer <token>`
 
 ### Response
 Code: 200 (OK)
@@ -49,7 +50,8 @@ Code: 200 (OK)
 You can create a directory sending `name` (required) and `parent_id` (optional), the `parent_id` is the parent directory of the new directory
 
 ### Request
-POST: `/filesystem/directories`
+- POST: `/filesystem/directories`
+- Headers: `Authorization: Bearer <token>`
 
 ### Request body example
 ```json
@@ -77,7 +79,8 @@ POST: `/filesystem/directories`
 To update a directory you can send `name` and/or `parent_id` as params, both are optional, but you should send one or other
 
 ### Request
-PATCH `/filesystem/directories/:id`
+- PATCH `/filesystem/directories/:id`
+- Headers: `Authorization: Bearer <token>`
 
 ### Request body example
 ```json
@@ -105,7 +108,8 @@ PATCH `/filesystem/directories/:id`
 This path only requires the id of the directory
 
 ### Request
-DELETE `/filesystem/directories/:id`
+- DELETE `/filesystem/directories/:id`
+- Headers: `Authorization: Bearer <token>`
 
 # Files
 
@@ -114,8 +118,9 @@ Here you can upload, update or delete a file
 ## Upload a file
 
 ### Request
-POST `/filesystem/files`
-Type: multipart/form-data
+- POST `/filesystem/files`
+- Type: multipart/form-data
+- Headers: `Authorization: Bearer <token>`
 
 ### Params
 * file[content] \<Attached file to upload\>
@@ -138,7 +143,8 @@ Code: 200 (OK)
 You can only update wich directory the file will be stored, passing the argument `parent_id` to the request
 
 ### Request
-PATCH `/filesystem/files/:id`
+- PATCH `/filesystem/files/:id`
+- Headers: `Authorization: Bearer <token>`
 
 ### Request body example
 ```json
@@ -165,4 +171,5 @@ PATCH `/filesystem/files/:id`
 
 This deletes a file
 ### Request
-DELETE `/filesystem/files/:id`
+- DELETE `/filesystem/files/:id`
+- Headers: `Authorization: Bearer <token>`

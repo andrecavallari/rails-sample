@@ -3,7 +3,9 @@
 This example will create a Job wich will fetch from the [OpenWeatherMap](http://openweathermap.org/) the weather and forecast of next five days, it will calculate the average temperature for next five days and create a tweet with the result.
 
 ## Request
-POST `/weather_tweet`
+- POST `/weather_tweet`
+- Headers: `Authorization: Bearer <token>`
+
 ```json
 {
   "city": "Cascavel",

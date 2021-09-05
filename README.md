@@ -22,6 +22,7 @@ To execute rubocop: `docker-compose run app bundle exec rubocop`
 
 ## Contents
 
+- [Authentication](docs/authentication.md)
 - [Filesystem](docs/filesystem.md)
 - [Simple Store](docs/store.md)
 - [Weather Tweet](docs/weather_tweet.md)
