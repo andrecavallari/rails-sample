@@ -19,12 +19,14 @@ module Auth
 
       private
 
+      # :nocov:
       def next_available_jti
         loop do
           hex = SecureRandom.alphanumeric(6)
           return hex unless redis.exists?("jti:#{hex}")
         end
       end
+      # :nocov:
 
       def redis
         @redis ||= Redis.new(url: ENV.fetch('JWT_DATABASE_REDIS_URL', 'redis://localhost:6379/0'))
