@@ -23,8 +23,8 @@ module Auth
     end
 
     def parsed_token
-      @parsed_token ||= JWT.decode(@token, Config.jwt_secret)&.first
-    rescue JWT::VerificationError, JWT::DecodeError, JWT::ExpiredSignature
+      @parsed_token ||= JWT.decode(@token, Config.jwt_secret).first
+    rescue StandardError
       {}
     end
   end
