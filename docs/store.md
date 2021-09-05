@@ -161,7 +161,7 @@ Creates a product, the params should be `name`, `price` and `segment_id` only, a
 
 ### Response
 ```json
- {
+{
   "id": 4,
   "created_at": "2021-08-21T20:42:22.671Z",
   "updated_at": "2021-08-21T20:42:22.671Z",
