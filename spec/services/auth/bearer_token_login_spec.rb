@@ -33,5 +33,11 @@ RSpec.describe Auth::BearerTokenLogin do
 
       it { is_expected.to be_nil }
     end
+
+    context 'when token is invalid' do
+      let(:token) { 'invalid_token' }
+
+      it { is_expected.to be_nil }
+    end
   end
 end
