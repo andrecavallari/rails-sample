@@ -3,7 +3,7 @@
 module Helpers
   def auth_header(user)
     {
-      authorization: Auth::BearerTokenGenerator.call(user.id)
+      authorization: Bearer::TokenGenerator.call(user.id)
     }
   end
 end

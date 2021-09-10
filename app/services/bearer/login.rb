@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Auth
-  class BearerTokenLogin < ApplicationService
+module Bearer
+  class Login < ApplicationService
     def initialize(token)
       @token = token.split.last
     end
@@ -19,11 +19,11 @@ module Auth
     end
 
     def user_id
-      @user_id ||= Auth::Database.user_id(parsed_token['jti'])
+      @user_id ||= Bearer::Database.user_id(parsed_token['jti'])
     end
 
     def parsed_token
-      @parsed_token ||= JWT.decode(@token, Config.jwt_secret).first
+      @parsed_token ||= JWT.decode(@token, Config::SECRET).first
     rescue StandardError
       {}
     end

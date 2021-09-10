@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Auth::BearerTokenGenerator do
+RSpec.describe Bearer::TokenGenerator do
   describe '.call' do
     subject(:token) { described_class.call(1) }
 
@@ -16,7 +16,7 @@ RSpec.describe Auth::BearerTokenGenerator do
       expect(parsed_token).to have_attributes(
         iat: 1_630_749_600,
         exp: anything,
-        iss: Auth::Config.issuer,
+        iss: Bearer::Config::ISSUER,
         jti: anything
       )
     end
