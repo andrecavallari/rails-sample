@@ -26,7 +26,7 @@ Warden::Strategies.add(:bearer_token) do
   end
 
   def authenticate!
-    user = Auth::BearerTokenLogin.call(env['HTTP_AUTHORIZATION'])
+    user = Bearer::Login.call(env['HTTP_AUTHORIZATION'])
 
     user.present? ? success!(user) : fail!
   end
