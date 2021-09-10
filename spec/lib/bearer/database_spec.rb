@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Auth::Database do
+RSpec.describe Bearer::Database do
   describe '.jti' do
     subject { described_class.jti(1) }
 
