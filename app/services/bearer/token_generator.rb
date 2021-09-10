@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module Auth
-  class BearerTokenGenerator < ApplicationService
+module Bearer
+  class TokenGenerator < ApplicationService
     def initialize(user_id)
       @user_id = user_id
     end
 
     def call
-      JWT.encode(payload, Config.jwt_secret)
+      JWT.encode(payload, Config::SECRET)
     end
 
     private
@@ -16,8 +16,8 @@ module Auth
       {
         iat: Time.current.to_i,
         exp: Config.expires_at,
-        iss: Config.issuer,
-        jti: Auth::Database.jti(@user_id)
+        iss: Config::ISSUER,
+        jti: Bearer::Database.jti(@user_id)
       }
     end
   end

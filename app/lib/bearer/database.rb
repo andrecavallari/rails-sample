@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-module Auth
+module Bearer
   class Database
     class << self
       def jti(user_id)
         jti = next_available_jti
-        redis.set("jti:#{jti}", user_id, ex: Config.expiration_time)
+        redis.set("jti:#{jti}", user_id, ex: Config::EXPIRATION_TIME)
         jti
       end
 
@@ -29,7 +29,7 @@ module Auth
       # :nocov:
 
       def redis
-        @redis ||= Redis.new(url: ENV.fetch('JWT_DATABASE_REDIS_URL', 'redis://localhost:6379/0'))
+        @redis ||= Redis.new(url: Config::REDIS_URL)
       end
     end
   end
