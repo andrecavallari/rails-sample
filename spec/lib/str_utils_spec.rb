@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
- RSpec.describe StrUtils do
+RSpec.describe StrUtils do
   describe '.find_repeated_letters' do
     subject { described_class.find_repeated_letters(word) }
 
@@ -44,4 +44,4 @@
       it { is_expected.to eq(4) }
     end
   end
- end
+end
