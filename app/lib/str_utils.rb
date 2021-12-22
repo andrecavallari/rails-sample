@@ -3,7 +3,7 @@
 class StrUtils
   class << self
     def find_repeated_letters(word)
-      word.scan(/(\w)(\1+)?/).map(&:join).max_by(&:length)
+      word.scan(/(.)(\1+)?/).map(&:join).max_by(&:length)
     end
 
     def last_word_length(phrase)

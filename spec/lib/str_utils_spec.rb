@@ -27,6 +27,12 @@ RSpec.describe StrUtils do
 
       it { is_expected.to eq('uuu') }
     end
+
+    context 'when is a phrase with two spaces' do
+      let(:word) { 'a hot  dog' }
+
+      it { is_expected.to eq('  ') }
+    end
   end
 
   describe '.last_word_length' do
