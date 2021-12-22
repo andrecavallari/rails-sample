@@ -20,9 +20,6 @@ To run tests just execute `docker-compose run app bundle exec rspec`
 
 To execute rubocop: `docker-compose run app bundle exec rubocop`
 
-## Contents
+## Documentation
 
-- [Authentication](docs/authentication.md)
-- [Filesystem](docs/filesystem.md)
-- [Simple Store](docs/store.md)
-- [Weather Tweet](docs/weather_tweet.md)
+Please, read the [wiki](https://github.com/andrecavallari/rails-sample/wiki) for contents and documentation
