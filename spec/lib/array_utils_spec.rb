@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe ArrayUtils do
-  describe '.symetric_difference' do
-    subject { described_class.symetric_difference(a, b) }
+  describe '.symmetric_difference' do
+    subject { described_class.symmetric_difference(a, b) }
 
     context 'when both have same values' do
       let(:a) { [1, 2, 3] }
