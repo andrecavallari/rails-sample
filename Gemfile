@@ -7,6 +7,7 @@ ruby '3.0.2'
 
 gem 'bcrypt', '~> 3.1.16'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bunny', '~> 2.19.0'
 gem 'httparty', '~> 0.18.1'
 gem 'jsonapi.rb', '~> 1.7.0'
 gem 'jwt', '~> 2.2.3'
