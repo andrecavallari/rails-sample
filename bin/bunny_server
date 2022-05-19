@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require_relative '../config/environment'
+
+TweetWeatherConsumer.start
+Rpc::CurrencyConsumer.start
+
+begin
+  puts 'Mq Client connected...'
+  sleep(5) while true
+rescue Interrupt
+  Mq::Client.channel.close
+  Mq::Client.connection.close
+  puts 'Shutting down mq client'
+  exit
+end
