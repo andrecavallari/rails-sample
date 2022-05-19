@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.apilayer.com/exchangerates_data/convert?amount=10&from=USD&to=BRL
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Apikey:
+      - "<apilayer.key>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 May 2022 22:31:21 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 70e048457a4b6b1b-GRU
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Apo-Via:
+      - origin,host
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Ratelimit-Limit:
+      - '250'
+      Ratelimit-Remaining:
+      - '230'
+      Ratelimit-Reset:
+      - '955719'
+      X-Cloud-Trace-Context:
+      - f37684b18ec253374f962b793445f56e;o=1
+      X-Ratelimit-Limit-Day:
+      - '250'
+      X-Ratelimit-Limit-Month:
+      - '250'
+      X-Ratelimit-Remaining-Day:
+      - '248'
+      X-Ratelimit-Remaining-Month:
+      - '230'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=vR5gnwi13qh9TJY9xRJ9tLNCBeq%2FGECy%2FrUVT2nzqDT8f2CIoUI6RmBAPvBkdjFL04Isp6ddggiHict5A5suYxjS%2FS0OFkNYo%2F3mK1AJDYmOOwV4iNVktIQBZXaHma65gk0%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+            "success": true,
+            "query": {
+                "from": "USD",
+                "to": "BRL",
+                "amount": 10
+            },
+            "info": {
+                "timestamp": 1652999463,
+                "rate": 4.931502
+            },
+            "date": "2022-05-19",
+            "result": 49.31502
+        }
+  recorded_at: Thu, 19 May 2022 22:31:21 GMT
+recorded_with: VCR 6.0.0
