@@ -11,7 +11,8 @@ RSpec.describe TweetWeatherConsumer, type: :consumer do
     subject(:action) { described_class.new(info, properties, body).call }
 
     let(:info) do
-      OpenStruct.new(consumer_tag: 'bunny-12345-678', delivery_tag: 1)
+      info_struct = Struct.new(:consumer_tag, :delivery_tag)
+      info_struct.new('bunny-12345-678', 1)
     end
 
     let(:properties) do
@@ -22,10 +23,10 @@ RSpec.describe TweetWeatherConsumer, type: :consumer do
       { city: 'Cascavel', state: 'Paraná' }.to_json
     end
 
-    it 'tweets the weather', :vcr do
+    it 'tweets the weather', :vcr, :aggregate_failures do
       expect(TweetWeatherJob).to receive(:perform_now)
         .with('Cascavel', 'Paraná').and_return('')
-      expect_any_instance_of(TweetWeatherConsumer).to receive(:ack)
+      expect_any_instance_of(described_class).to receive(:ack)
 
       action
     end

@@ -24,7 +24,7 @@ class ApplicationConsumer
     end
 
     def logger
-      @logger ||= Logger.new(STDOUT).tap do |l|
+      @logger ||= Logger.new($stdout).tap do |l|
         l.level = ENV.fetch('LOG_LEVEL', Logger::INFO)
       end
     end
@@ -39,7 +39,7 @@ class ApplicationConsumer
   end
 
   def reply(message)
-    raise StandardError, 'Property reply_to is not present' unless properties[:reply_to].present?
+    raise StandardError, 'Property reply_to is not present' if properties[:reply_to].blank?
 
     Mq::Client.channel.default_exchange.publish(
       message,

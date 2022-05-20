@@ -2,7 +2,7 @@
 
 RSpec.describe Mq::Rpc do
   describe '.call' do
-    subject { described_class.new(queue_name, 3).call(payload) }
+    subject(:action) { described_class.new(queue_name, 3).call(payload) }
 
     let(:queue_name) { 'rpc.test' }
     let(:payload) { [10, 2].to_json }
@@ -21,7 +21,7 @@ RSpec.describe Mq::Rpc do
     end
 
     it 'returns response' do
-      expect(subject).to eq('20')
+      expect(action).to eq('20')
     end
   end
 end

@@ -8,7 +8,7 @@ RSpec.describe Rpc::CurrencyConsumer, type: :consumer do
   end
 
   describe '#call' do
-    subject { described_class.new(info, properties, body).call }
+    subject(:action) { described_class.new(info, properties, body).call }
 
     let(:info) do
       { consumer_tag: 'bunny-12345-678' }
@@ -25,7 +25,7 @@ RSpec.describe Rpc::CurrencyConsumer, type: :consumer do
     it 'reply with apilayer response', :vcr do
       expect_any_instance_of(described_class).to receive(:reply).with('49.31502')
 
-      subject
+      action
     end
   end
 end

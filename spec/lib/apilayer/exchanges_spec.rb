@@ -2,16 +2,16 @@
 
 RSpec.describe Apilayer::Exchanges do
   describe '#convert', :vcr do
-    subject { described_class.convert(amount, from, to) }
+    subject(:action) { described_class.convert(amount, from, to) }
 
     let(:amount) { 10 }
     let(:from) { 'BRL' }
     let(:to) { 'USD' }
 
-    context 'when data is valid' do
+    context 'when data is valid', :aggregate_failures do
       it 'returns converted data' do
-        expect(subject['success']).to be(true)
-        expect(subject['result']).to eq(2.02482)
+        expect(action['success']).to be(true)
+        expect(action['result']).to eq(2.02482)
       end
     end
   end

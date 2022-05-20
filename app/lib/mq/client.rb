@@ -4,7 +4,7 @@ module Mq
   class Client
     class << self
       def connection
-        @connection ||= Bunny.new(connection_string).tap { |s| s.start }
+        @connection ||= Bunny.new(connection_string).tap(&:start)
       end
 
       def channel
