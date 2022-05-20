@@ -5,6 +5,7 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    environment: test
     env:
       CI: true
       OPEN_WEATHER_API_KEY: somedisabledkey
