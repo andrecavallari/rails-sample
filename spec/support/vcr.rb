@@ -26,6 +26,7 @@ VCR.configure do |config|
   config.default_cassette_options = { record: :none }
 
   puts Rails.application.credentials.config
+  puts ENV['RAILS_MASTER_KEY']
   credentials = filter_hash(Rails.application.credentials.config).flatten.reduce(:merge)
 
   credentials.each do |key, value|
