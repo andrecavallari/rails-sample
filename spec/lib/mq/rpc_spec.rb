@@ -9,7 +9,7 @@ RSpec.describe Mq::Rpc do
 
     before do
       queue = Mq::Client.channel.queue('rpc.test', exclusive: true)
-      queue.subscribe do |info, properties, body|
+      queue.subscribe do |_info, properties, body|
         parsed_body = JSON.parse(body)
         response = parsed_body[0] * parsed_body[1]
 
@@ -21,7 +21,7 @@ RSpec.describe Mq::Rpc do
     end
 
     it 'returns response' do
-      is_expected.to eq('20')
+      expect(subject).to eq('20')
     end
   end
 end

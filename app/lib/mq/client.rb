@@ -12,9 +12,10 @@ module Mq
       end
 
       private
-        def connection_string
-          @connection_string ||= ENV.fetch('CLOUDAMQP_URL', 'amqp://localhost:5672')
-        end
+
+      def connection_string
+        @connection_string ||= ENV.fetch('CLOUDAMQP_URL', 'amqp://localhost:5672')
+      end
     end
   end
 end

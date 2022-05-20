@@ -10,7 +10,7 @@ RSpec.describe Apilayer::Exchanges do
 
     context 'when data is valid' do
       it 'returns converted data' do
-        expect(subject['success']).to eq(true)
+        expect(subject['success']).to be(true)
         expect(subject['result']).to eq(2.02482)
       end
     end

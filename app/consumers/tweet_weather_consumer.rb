@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class TweetWeatherConsumer < ApplicationConsumer
-
   # :nocov:
   def self.start
     exchange = channel.exchange('weather.out', type: :fanout)
@@ -22,11 +21,12 @@ class TweetWeatherConsumer < ApplicationConsumer
   end
 
   private
-    def city
-      @city ||= parsed_body['city'] or raise StandardError, 'City is not present'
-    end
 
-    def state
-      @state ||= parsed_body['state'] or raise StandardError, 'State is not present'
-    end
+  def city
+    @city ||= parsed_body['city'] or raise StandardError, 'City is not present'
+  end
+
+  def state
+    @state ||= parsed_body['state'] or raise StandardError, 'State is not present'
+  end
 end

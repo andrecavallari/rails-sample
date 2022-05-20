@@ -3,7 +3,8 @@
 module Mq
   class Rpc
     def initialize(target, timeout = 180)
-      @target, @timeout = target, timeout
+      @target = target
+      @timeout = timeout
     end
 
     def call(payload)
@@ -20,23 +21,24 @@ module Mq
     end
 
     private
-      def queue
-        @queue ||= Client.channel.queue('', exclusive: true)
-      end
 
-      def exchange
-        @exchange ||= Client.channel.default_exchange
-      end
+    def queue
+      @queue ||= Client.channel.queue('', exclusive: true)
+    end
 
-      def subscribe!
-        queue.subscribe do |info, properties, body|
-          @response = body
-          @locker.synchronize { @condition.signal }
-        end
-      end
+    def exchange
+      @exchange ||= Client.channel.default_exchange
+    end
 
-      def publish!
-        exchange.publish(@payload.to_s, routing_key: @target, reply_to: queue.name)
+    def subscribe!
+      queue.subscribe do |_info, _properties, body|
+        @response = body
+        @locker.synchronize { @condition.signal }
       end
+    end
+
+    def publish!
+      exchange.publish(@payload.to_s, routing_key: @target, reply_to: queue.name)
+    end
   end
 end

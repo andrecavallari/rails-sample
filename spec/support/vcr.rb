@@ -11,10 +11,10 @@ SENSITIVE_ENV_VARIABLES = %w[
 ].freeze
 
 def filter_hash(value, key = nil)
-  if value.class.name == 'Hash'
+  if value.instance_of?(Hash)
     value.map { |k, v| filter_hash(v, [key, k].compact.join('.')) }
   else
-    Hash[key, value]
+    { key => value }
   end
 end
 
