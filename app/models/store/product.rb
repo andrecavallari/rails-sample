@@ -6,7 +6,6 @@ module Store
 
     validates :name, presence: true, uniqueness: true
     validates :price, presence: true, numericality: { greater_than: 0 }
-    validates :segment, presence: true
 
     before_save :set_final_price
 

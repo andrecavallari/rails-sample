@@ -40,7 +40,7 @@ RSpec.describe 'Store Segments Requests', type: :request do
 
     context 'when segment name and operation are filled' do
       it 'responds with ok', :aggregate_failures do
-        expect { do_request }.to change { Store::Segment.count }.by(1)
+        expect { do_request }.to change(Store::Segment, :count).by(1)
         expect(response).to have_http_status(:created)
         expect(json_response[:name]).to eq(segment_name)
         expect(json_response[:operation]).to eq(segment_operation)
