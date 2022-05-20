@@ -18,6 +18,6 @@ VCR.configure do |config|
   config.default_cassette_options = { record: :none }
 
   SENSITIVE_ENV_VARIABLES.each do |key|
-    config.filter_sensitive_data("<#{key}>") { ENV[key] }
+    config.filter_sensitive_data("<#{key}>") { ENV.fetch(key, nil) }
   end
 end

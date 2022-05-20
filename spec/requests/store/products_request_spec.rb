@@ -75,7 +75,7 @@ RSpec.describe 'Store Products Requests', type: :request do
       it 'responds with unprocessable_entity', :aggregate_failures do
         expect { do_request }.not_to change(Store::Product, :count)
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(json_response[:segment]).to match_array(['é obrigatório', 'não pode ficar em branco'])
+        expect(json_response[:segment]).to include('é obrigatório')
       end
     end
 
@@ -85,7 +85,7 @@ RSpec.describe 'Store Products Requests', type: :request do
       it 'responds with unprocessable_entity', :aggregate_failures do
         expect { do_request }.not_to change(Store::Product, :count)
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(json_response[:segment]).to match_array(['é obrigatório', 'não pode ficar em branco'])
+        expect(json_response[:segment]).to include('é obrigatório')
       end
     end
   end

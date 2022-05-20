@@ -21,7 +21,7 @@ class ApplicationController < ActionController::API
   def parsed_jwt_token
     @parsed_jwt_token ||= JWT.decode(
       request.env['HTTP_AUTHORIZATION'].split.last,
-      ENV['JWT_SECRET']
+      ENV.fetch('JWT_SECRET', nil)
     ).first
   end
   # :nocov:

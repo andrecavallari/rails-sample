@@ -2,7 +2,7 @@
 
 module Bearer
   class Config
-    SECRET = ENV['JWT_SECRET']
+    SECRET = ENV.fetch('JWT_SECRET', nil)
     EXPIRATION_TIME = ENV.fetch('JWT_EXPIRATION_TIME', 21_600).to_i
     ISSUER = ENV.fetch('JWT_ISSUER', 'https://andre.srv.br')
     REDIS_URL = ENV.fetch('JWT_REDIS_URL', 'redis://localhost:6379')

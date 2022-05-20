@@ -7,7 +7,6 @@ RSpec.describe Store::Product, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name) }
     it { is_expected.to validate_presence_of(:price) }
-    it { is_expected.to validate_presence_of(:segment) }
   end
 
   describe 'associations' do
