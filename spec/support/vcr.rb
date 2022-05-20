@@ -25,6 +25,7 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.default_cassette_options = { record: :none }
 
+  puts Rails.application.credentials.config
   credentials = filter_hash(Rails.application.credentials.config).flatten.reduce(:merge)
 
   credentials.each do |key, value|
