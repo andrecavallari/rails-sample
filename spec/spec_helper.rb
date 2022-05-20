@@ -11,6 +11,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
 )
 SimpleCov.start do
   add_filter(%r{^/spec/})
+  add_filter(%r{^/config/})
   enable_coverage(:branch)
 end
 

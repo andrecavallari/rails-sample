@@ -32,6 +32,6 @@ VCR.configure do |config|
   end
 
   SENSITIVE_ENV_VARIABLES.each do |key|
-    config.filter_sensitive_data("<#{key}>") { ENV[key] }
+    config.filter_sensitive_data("<#{key}>") { ENV.fetch(key, nil) }
   end
 end

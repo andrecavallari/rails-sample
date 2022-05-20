@@ -24,7 +24,7 @@ class OpenWeatherApi
 
     def get(path, query: {})
       super(path, query: query.merge(
-        appid: ENV['OPEN_WEATHER_API_KEY'],
+        appid: ENV.fetch('OPEN_WEATHER_API_KEY', nil),
         units: DEFAULT_UNITS,
         lang: DEFAULT_LANGUAGE
       ))

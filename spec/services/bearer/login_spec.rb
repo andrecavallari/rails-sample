@@ -27,7 +27,7 @@ RSpec.describe Bearer::Login do
     end
 
     context 'when jti doesnt exists in database' do
-      let(:parsed_token) { JWT.decode(token, ENV['JWT_SECRET']) }
+      let(:parsed_token) { JWT.decode(token, ENV.fetch('JWT_SECRET', nil)) }
 
       before { Bearer::Database.revoke(parsed_token.first['jti']) }
 

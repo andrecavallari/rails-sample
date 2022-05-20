@@ -4,7 +4,7 @@ RSpec.describe Bearer::Database do
   describe '.jti' do
     subject { described_class.jti(1) }
 
-    it { is_expected.to match /\A[a-zA-Z0-9]{6}\z/ }
+    it { is_expected.to match(/\A[a-zA-Z0-9]{6}\z/) }
   end
 
   describe '.user_id' do
