@@ -2,6 +2,8 @@
 
 module Rpc
   class CurrencyConsumer < ApplicationConsumer
+
+    # :nocov:
     def self.start
       channel.queue('rpc.currency').subscribe do |info, properties, body|
         logger.info "Received #{body} in rpc.currency"
@@ -9,6 +11,7 @@ module Rpc
         new(info, properties, body).call
       end
     end
+    # :nocov:
 
     def call
       reply apilayer_response['result'].to_s
