@@ -5,7 +5,9 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    environment: test
     env:
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       CI: true
       OPEN_WEATHER_API_KEY: somedisabledkey
       TWITTER_API_KEY: somedisabledkey
@@ -24,6 +26,10 @@ jobs:
         image: redis:6.2.5-alpine
         ports:
           - 6379:6379
+      rabbitmq:
+        image: rabbitmq:3.10.1-alpine
+        ports:
+          - 5672:5672
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1

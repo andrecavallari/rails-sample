@@ -10,11 +10,13 @@ class OpenWeatherApi
   class << self
     def current_weather(city, state = nil, country = DEFAULT_COUNTRY)
       query_string = [city, state, country].compact.join(',')
+
       get('/weather', query: { q: query_string })
     end
 
     def forecast(city, state = nil, country = DEFAULT_COUNTRY)
       query_string = [city, state, country].compact.join(',')
+
       get('/forecast', query: { q: query_string })
     end
 

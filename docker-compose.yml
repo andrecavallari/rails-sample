@@ -32,6 +32,13 @@ services:
       service: redis_base
     volumes:
       - redis_data:/data
+  rabbitmq:
+    extends:
+      file: docker-compose.base.yml
+      service: rabbitmq_base
+    volumes:
+      - rabbit_data:/var/lib/rabbitmq
 volumes:
   pg_data:
   redis_data:
+  rabbit_data:

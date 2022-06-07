@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.apilayer.com/exchangerates_data/convert?amount=10&from=BRL&to=USD
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Apikey:
+      - "<apilayer.key>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 17 May 2022 21:19:27 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 70cf64323aeba641-GRU
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Apo-Via:
+      - origin,host
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      X-Cloud-Trace-Context:
+      - ea8ae872eb102a26dc05635a2e399bb4;o=1
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=sTRs7VgQD9CJvXjzCHDTp7qGyCS5G%2FZF9SGD6qHQQ4YRXZZbA5masEgJ1uS2nTmZ8drHrJd1%2FuyqSeIbUSKseQDjHxxu4najV5J3E1bqvEsjt66lYp7rpUpTd5K0XyHEUWk%3D"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Vary:
+      - Accept-Encoding
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+            "success": true,
+            "query": {
+                "from": "BRL",
+                "to": "USD",
+                "amount": 10
+            },
+            "info": {
+                "timestamp": 1652822357,
+                "rate": 0.202482
+            },
+            "date": "2022-05-17",
+            "result": 2.02482
+        }
+  recorded_at: Tue, 17 May 2022 21:19:28 GMT
+recorded_with: VCR 6.0.0
