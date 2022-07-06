@@ -2,6 +2,8 @@
 
 This is a sample rails app for showing my skills with ruby on rails
 
+And this is just a comment in this pull request to show CI actions
+
 ## Requirements
 
 * Docker
