@@ -32,7 +32,7 @@ class ApplicationConsumer
 
   def parsed_body
     @parsed_body ||= begin
-      JSON.parse(body)
+      JSON.parse body, symbolize_names: true
     rescue StandardError
       body
     end

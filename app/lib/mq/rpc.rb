@@ -7,7 +7,7 @@ module Mq
       @timeout = timeout
     end
 
-    def call(payload)
+    def call(payload = '')
       @payload = payload
       @locker = Mutex.new
       @condition = ConditionVariable.new
@@ -38,7 +38,7 @@ module Mq
     end
 
     def publish!
-      exchange.publish(@payload.to_s, routing_key: @target, reply_to: queue.name)
+      exchange.publish(@payload.to_json, routing_key: @target, reply_to: queue.name)
     end
   end
 end
