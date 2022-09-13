@@ -23,10 +23,10 @@ class TweetWeatherConsumer < ApplicationConsumer
   private
 
   def city
-    @city ||= parsed_body[:city] or raise StandardError, 'City is not present'
+    parsed_body[:city] or raise StandardError, 'City is not present'
   end
 
   def state
-    @state ||= parsed_body[:state] or raise StandardError, 'State is not present'
+    parsed_body[:state] or raise StandardError, 'State is not present'
   end
 end
