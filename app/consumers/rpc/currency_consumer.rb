@@ -23,15 +23,15 @@ module Rpc
     end
 
     def amount
-      @amount ||= parsed_body['amount'] || 1.0
+      @amount ||= parsed_body[:amount] || 1.0
     end
 
     def currency_from
-      @currency_from ||= parsed_body['from'] || 'USD'
+      @currency_from ||= parsed_body[:from] || 'USD'
     end
 
     def currency_to
-      @currency_to ||= parsed_body['to'] || 'BRL'
+      @currency_to ||= parsed_body[:token] || 'BRL'
     end
   end
 end
