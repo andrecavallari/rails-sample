@@ -1,5 +1,6 @@
 services:
   base:
+    platform: linux/arm64
     tty: true
     stdin_open: true
     build: .
@@ -10,16 +11,19 @@ services:
       - REDIS_URL=redis://redis:6379/0
       - JWT_DB_REDIS_URL=redis://redis:6379/0
   postgres_base:
+    platform: linux/arm64
     image: postgres:13.4-alpine
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
   redis_base:
+    platform: linux/arm64
     image:  redis:6.2.5-alpine
     ports:
       - "6379:6379"
   rabbitmq_base:
+    platform: linux/arm64
     image: rabbitmq:3.10.5-management-alpine
     ports:
       - "5672:5672"
