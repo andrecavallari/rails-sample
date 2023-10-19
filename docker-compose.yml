@@ -5,9 +5,9 @@ services:
     extends:
       file: docker-compose.base.yml
       service: base
-    command: bundle exec puma -C config/puma.rb
+    command: sh -c "bundle install && bundle exec puma -C config/puma.rb"
     ports:
-      - "5000:5000"
+      - "3000:3000"
     links:
       - db
       - redis
