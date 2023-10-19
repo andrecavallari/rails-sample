@@ -9,7 +9,8 @@ services:
     environment:
       - DB_HOST=db
       - REDIS_URL=redis://redis:6379/0
-      - JWT_DB_REDIS_URL=redis://redis:6379/0
+      - JWT_REDIS_URL=redis://redis:6379/0
+      - CLOUDAMQP_URL=amqp://rabbitmq:5672
   postgres_base:
     platform: linux/arm64
     image: postgres:13.4-alpine
